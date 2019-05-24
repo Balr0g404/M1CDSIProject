@@ -4,7 +4,7 @@
 import json
 import inspect
 from os import popen
-
+from sys import exit
 
 class JSON_PARSING:
     def __init__(self,filename,verbose):
@@ -17,7 +17,11 @@ class JSON_PARSING:
         self.parsing(text.read())
 
     def parsing(self,text):
-        self.text = json.loads(text)
+        try:
+            self.text = json.loads(text)
+        except:
+            print("[-] Erreur ouverture du fichier")
+            exit()
         self.extract()
     def extract(self):
         #self.filename = self.text['filename']
